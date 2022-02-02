@@ -13,6 +13,9 @@
             <div class="col-12">
                 <h1 class="text-center">Add Todo</h1>
                 <hr style="width: 300px">
+                @if(session('massage'))
+            <p class="text-success text-center mt-3">{{session('massage')}}</p>
+            @endif
                 <div class="card">
                     <div class="card-body">
                         <form action="{{ route('store') }}" method="POST">
@@ -31,6 +34,9 @@
                 </div>
             </div>
         </div>
+        @if (session('massage'))
+        <p class="text-center text-danger">{{ session('delete') }}</p>
+        @endif
         <div class="row">
             <div class="col-5 d-flex justify-content-center align-items-center" style="height: 60vh">
                 <table class="table table-hover table-light">
@@ -40,7 +46,7 @@
                         <th>Title</th>
                         <th>Description</th>
                         <th>Status</th>
-                        <th>complete</th>
+                        <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -64,6 +70,7 @@
                         <th>Title</th>
                         <th>Description</th>
                         <th>Status</th>
+                        <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -73,6 +80,12 @@
                                 <td>{{ $todo->title }}</td>
                                 <td>{{ $todo->description }}</td>
                                 <td>{{ $todo->status }}</td>
+                                <td>
+                                    <form action="{{ route('destroy',['id'=> $todo->id ]) }}" method="POST">
+                                        @csrf
+                                        <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                                    </form>
+                            </td>
                             </tr>
                             @endforeach
                     </tbody>

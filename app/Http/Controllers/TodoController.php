@@ -42,4 +42,9 @@ class TodoController extends Controller
         $todo->save();
         return redirect()->back();
     }
+    public function destroy(todo $id)
+    {
+        $id->delete();
+        return redirect()->back()->with('delete', 'Complete Todos has been Deleted');
+    }
 }

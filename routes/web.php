@@ -8,3 +8,4 @@ Route::get('/index',[TodoController::class,'index'])->name('index');
 Route::get('/addtodo',[TodoController::class,'addtodo'])->name('addtodo');
 Route::post('/store',[TodoController::class,'store'])->name('store');
 Route::get('/complete/{id}',[TodoController::class,'completeTodo'])->name('completeTodo');
+Route::post('/destroy/{id}',[TodoController::class,'destroy'])->name('destroy');
